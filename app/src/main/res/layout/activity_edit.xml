@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:keepScreenOn="true"
+    tools:context=".Edit">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Your Name"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_dark"
+            android:textSize="28sp"
+            android:textStyle="bold"
+
+            />
+
+        <EditText
+            android:id="@+id/inputName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/primary_text_light"
+            android:focusable="true"
+            android:hint="@string/name"
+            android:inputType="text"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Emergency Contact"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_dark"
+            android:textSize="28sp"
+            android:textStyle="bold"
+
+            />
+
+        <EditText
+            android:id="@+id/em1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/primary_text_light"
+            android:focusable="true"
+            android:hint="@string/em1"
+            android:inputType="phone"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Emergency Contact"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_dark"
+            android:textSize="28sp"
+            android:textStyle="bold"
+
+            />
+
+        <EditText
+            android:id="@+id/em2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/primary_text_light"
+            android:focusable="true"
+            android:hint="@string/em2"
+            android:inputType="phone"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:srcCompat="@drawable/next" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Drive Safe</string>
+    <string name="driver">Driver</string>
+    <string name="name">Name</string>
+    <string name="em1">Phone Number</string>
+    <string name="em2">Phone Number</string>
+    <string name="rider">Rider</string>
+</resources>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:keepScreenOn="true"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        android:id="@+id/minY"
+        android:layout_width="61dp"
+        android:layout_height="24dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/mainButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/unit" />
+
+    <TextView
+        android:id="@+id/unit"
+        style="@android:style/Widget.DeviceDefault.TextView.SpinnerItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="km/hr"
+        android:textAlignment="center"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/speed" />
+
+    <ImageView
+        android:id="@+id/mainButton"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/driving" />
+
+    <TextView
+        android:id="@+id/driveModeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_marginTop="44dp"
+        android:lineSpacingExtra="30sp"
+        android:padding="10dp"
+        android:text="TextView"
+        android:textAlignment="textStart"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/panic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainButton"
+        app:layout_constraintVertical_bias="0.11" />
+
+    <ImageView
+        android:id="@+id/edit"
+        android:layout_width="43dp"
+        android:layout_height="47dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/edit" />
+
+    <ImageView
+        android:id="@+id/panic"
+        android:layout_width="123dp"
+        android:layout_height="98dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/panic" />
+
+    <TextView
+        android:id="@+id/latutude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintEnd_toStartOf="@+id/driveModeText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/driveModeText" />
+
+    <TextView
+        android:id="@+id/londtitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/driveModeText"
+        app:layout_constraintTop_toBottomOf="@+id/driveModeText" />
+
+    <TextView
+        android:id="@+id/speed"
+        style="@android:style/Widget.DeviceDefault.TextView.SpinnerItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="112dp"
+        android:inputType="numberDecimal"
+        android:text="0.0"
+        android:textAlignment="center"
+        android:textSize="50sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
