@@ -291,6 +291,23 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
     }
 
+    public void sendMessageArray(String[] placeArray){
+        Toast.makeText(MainActivity.this,placeArray[0],Toast.LENGTH_LONG).show();
+
+        String placeName="";
+        int length = placeArray.length>3 ? 3 : placeArray.length;
+
+
+        for (int i=1;i<=length;i++){
+            placeName+="\n"+i+". "+placeArray[i-1];
+        }
+        Log.e("Length",String.valueOf(placeName));
+
+        sendMessage("0",placeName,"1");
+
+
+    }
+
     public void sendMessage(String no, String finalPlaceName1,String a) {
         String policeStation=" ";
         Toast.makeText(MainActivity.this,finalPlaceName1+": "+no,Toast.LENGTH_LONG).show();
@@ -307,7 +324,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                     try {
                         if(!(finalPlaceName1.equals(""))) {
                             sleep(2000);
-                            msg = "Nearest Police Station from the accident Location  " + finalPlaceName1 + " :" + no;
+                            msg = "Nearest Police Station from the accident Location  " + finalPlaceName1;
                             smsManager.sendTextMessage("+91" + phnNo1, null, msg, null, null);
                             smsManager.sendTextMessage("+91" + phnNo2, null, msg, null, null);
 
@@ -575,9 +592,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     public void getNearestPolice(double latitude,double longitude) {
 
         String type = "police";
-        String googlePlacesUrl="https://maps.googleapis.com/maps/api/place/search/json?location="+latitude+","+longitude+"&rankby=distance&types=police&sensor=false&key="+apiKey;
+        String googlePlacesUrl="https://maps.googleapis.com/maps/api/place/search/json?location="+latitude+","+longitude+"&rankby=distance&types=police&sensor=false&key="+apiKey2;
         //"https://maps.googleapis.com/maps/api/place/search/json?location=22.6219578,88.4158157&rankby=distance&types=police&sensor=false&key=AIzaSyBJvlD3dqnz42r9obhEClc2dEJAdXt9IK8"
-        Log.e("Link",googlePlacesUrl);
+        //Log.e("Link",googlePlacesUrl);
         final RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         queue.start();
 
@@ -590,6 +607,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
                     @Override
                     public void onResponse(JSONObject response) {
+
                         parseLocationResult(response);
 
                     }
@@ -609,14 +627,16 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         String id, place_id, placeName = null, reference, icon, vicinity = null;
         double latitude, longitude;
 
+
         try {
             final int[] k = {0};
 
             JSONArray jsonArray = result.getJSONArray("results");
             //Toast.makeText(this,result.getString(STATUS),Toast.LENGTH_SHORT).show();
             //Toast.makeText(this,result.getString(STATUS),Toast.LENGTH_SHORT).show();
+            Log.e("Place",String.valueOf(jsonArray.length()));
+            String[] placeArray =new String[jsonArray.length()];
             if (result.getString(STATUS).equalsIgnoreCase("OK")) {
-
 
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject place = jsonArray.getJSONObject(i);
@@ -624,10 +644,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
                     id = place.getString("id");
                     place_id = place.getString("place_id");
+
                     if (!place.isNull("name")) {
 
                         placeName = place.getString("name");
-                        //Log.e("Place",placeName);
+                        placeArray[i] = placeName;
+
                         //return;
 
                         List<Place.Field> placeFields = Arrays.asList(Place.Field.PHONE_NUMBER);
@@ -636,10 +658,16 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
                         String finalPlaceName = placeName;
                         String finalPlaceName1 = placeName;
+
+                        //Number of Police Station
+                        /*
+
                         placesClient.fetchPlace(placeRequest).addOnSuccessListener((response) -> {
+                            Log.e("Place",String.valueOf(response.getPlace()));
                             Place places = response.getPlace();
                             String no;
                             no=places.getPhoneNumber();
+
                             if(no!=null && k[0]==0) {
                                 k[0]=1;
                                 Log.e("Place: ",finalPlaceName+" "+no);
@@ -666,16 +694,22 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                             }catch (Exception e){
                                 e.printStackTrace();
                             }
-*/
+
 
                         }).addOnFailureListener((exception) -> {
-                                    Toast.makeText(this,exception.getMessage()+"place",Toast.LENGTH_LONG).show();
 
-                        });
+                                    Toast.makeText(this,exception.getMessage(),Toast.LENGTH_LONG).show();
+
+                        });*/
+
                     }
 
 
                 }
+
+                //sendMessage("","","1");
+                sendMessageArray(placeArray);
+
             } else if (result.getString(STATUS).equalsIgnoreCase("ZERO_RESULT")) {
                 Toast.makeText(getBaseContext(), "No Police Station found in 50KM radius!!!",
 
@@ -687,6 +721,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             }
 
         } catch (JSONException e) {
+
 
             //Toast.makeText(this,e.getMessage(),Toast.LENGTH_SHORT).show();
             if (flag == 0) {
